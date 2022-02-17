@@ -88,10 +88,10 @@ color boxes */
         }
       }; // end onEachFeature
         var covidData = new L.geoJson(covidData, {onEachFeature : onEachFeature, pointToLayer: function(feature, ll) {return L.circleMarker(ll, {
-                color: '#006600',
+                color: '#f57897',
                 opacity: 1,
                 weight: 2,
-                fillColor: '#006600',
+                fillColor: '#f86186',
                 fillOpacity: .5,
                 //radius: 10
                 radius: calcRadius(feature.properties.covid)
@@ -131,8 +131,6 @@ legend.onAdd = function (map) {
               }
             });
 
-L.geoJson(coviddata,{}).addTo(map)
-L.geoJson(provinces,{}).addTo(map)
 L.control.layers(basemaps, overlaymaps, {collapsed:false}).addTo(map);
         </script>
    </body>
