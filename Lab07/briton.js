@@ -1285,4 +1285,4 @@ var Brighton =
 { "type": "Feature", "properties": { "name": "Opera House", "latitude": 41.178903, "longitude": -92.251849, "time": "12\/17\/1908" }, "geometry": { "type": "Point", "coordinates": [ -92.251849, 41.178903 ] } },
 { "type": "Feature", "properties": { "name": "Opera House", "latitude": 41.198372, "longitude": -92.093089, "time": "12\/18\/1908" }, "geometry": { "type": "Point", "coordinates": [ -92.093089, 41.198372 ] } }
 ]
-;
+
