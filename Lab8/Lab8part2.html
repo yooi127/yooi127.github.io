@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+   <head>
+    <title>Lab 8 part 2 Yooi3 | D3</title>
+    <script src="https://d3js.org/d3.v5.min.js" charset="utf-8"></script>
+    <script src="https://yooi127.github.io/Lab8/busstop.js"></script>
+    <script src="https://yooi127.github.io/Lab8/street.js"></script>
+    <style>
+    body {
+      position: absolute;
+      font-family: "Proxima Nova", "Montserrat", sans-serif;
+    }
+    h1, h2 {
+      position: absolute;
+      background: white;
+      left: 10px;
+      font-size: 1.3em;
+      font-weight: 100;
+    }
+    h2 {
+      top: 30px;
+      font-size: 1em;
+    }
+    .hover {
+      fill: green;
+}
+</style>
+   </head>
+    <body>
+    <h1>Bustop in Lincoln</h1>
+    <h2></h2>
+<br>
+<br>
+<br>
+<br>
+    <script>
+    var minVal = 1900
+    var maxVal = 2020
+    var width = 2000;
+    var lowColor = '#bc2a66'
+    var highColor = '#f9f9f9'
+    var color = '#ffeb3b'
+    var height = 800;
+    // Create SVG
+    var svg = d3.select( "body" )
+        .append( "svg" )
+        .attr( "width", width )
+        .attr( "height", height );
+    // g will contain geometry elements
+
+    var g = svg.append( "g" );
+    // Width and Height of the whole visualization
+    // Set Projection Parameters
+
+    var albersProjection = d3.geoAlbers()
+        .scale( 1550000 )
+        .rotate( [96.6327,0] )
+        .center( [0, 40.84654745305469] )
+        .translate( [width/2,height/2] );
+    // Create GeoPath function to turn lat/lon into screen coordinates
+    var geoPath = d3.geoPath()
+        .projection( albersProjection );
+
+    var ramp = d3.scaleLinear().domain([minVal,maxVal]).range([lowColor,highColor]);
+
+
+    //select element; bind data; append attributes; apply
+    g.selectAll( "path" )
+        .data( street.features )
+        .enter()
+        .append( "path" )
+        .attr( "fill", "#ccc" )
+        .attr( "stroke", "#333")
+        .attr( "d", geoPath );
+
+        var lnk_json = svg.append( "g" );
+lnk_json.selectAll( "path" )
+        .data( busstop.features )
+        .enter()
+        .append( "path" )
+        .attr ( "fill", color)
+        .attr( "stroke", "#999" )
+        .attr( "d", geoPath )
+
+        .attr("class","buildingdata")
+        .on("mouseover", function(d){
+        //populate h2 with "built in" & the year built field from the json
+        d3.select("h2").text("ID: " + d.properties.ID);
+        d3.select(this).attr("class","buildingdata hover");
+        })
+        //here, D3 to replace text interactively based on building data
+        .on("mouseout", function(d){
+        d3.select("h2").text("");
+        d3.select(this).attr("class","buildingdata");
+
+        });
+
+
+    </script>
+    <div id="map" style="width: 100%; height: 650px"></div>
+   </body>
+</html>
