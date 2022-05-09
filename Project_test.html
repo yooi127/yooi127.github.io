@@ -35,8 +35,8 @@
 
       const defaultSym = {
               type: "simple-marker", // autocasts as new SimpleMarkerSymbol()
-              color: [0, 0, 0, 0],
-              style: "diamond",
+              color: [0, 25, 96, 0],
+              style: "triangle",
               outline: {
                 // autocasts as new SimpleLineSymbol()
                 color: "#F433FF",
@@ -134,7 +134,7 @@
       });
 
     const map = new Map({
-        basemap: "hybrid",
+        basemap: "streets-night-vector",
         layers: [layer]
       });
 
